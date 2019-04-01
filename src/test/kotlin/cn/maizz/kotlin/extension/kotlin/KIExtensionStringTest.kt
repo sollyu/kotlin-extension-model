@@ -3,6 +3,7 @@ package cn.maizz.kotlin.extension.kotlin
 import org.junit.Assert
 import org.junit.Test
 import java.nio.charset.Charset
+import cn.maizz.kotlin.extension.kotlin.KIExtensionString
 
 class KIExtensionStringTest : KIExtensionString {
 
@@ -31,6 +32,24 @@ class KIExtensionStringTest : KIExtensionString {
     fun testMd5() {
         Assert.assertEquals("王大弎".md5(), "c2b23999826ee322d5323285c662fed7")
         Assert.assertEquals("admin@sollyu.com".md5(), "e1203b403be68ba63c9006218cc41e68")
+    }
+
+    @Test
+    fun testMd5_16() {
+        Assert.assertEquals("王大弎".md5_16(), "826ee322d5323285")
+        Assert.assertEquals("admin@sollyu.com".md5_16(), "3be68ba63c900621")
+    }
+
+    @Test
+    fun testSha1() {
+        Assert.assertEquals("王大弎".sha1(), "844a31e8b6b545b96d021d45682d6581eaec9c70")
+        Assert.assertEquals("admin@sollyu.com".sha1(), "2a6645486e1cf0f4ec4f3223e6368060e8d74293")
+    }
+
+    @Test
+    fun testSha256() {
+        Assert.assertEquals("王大弎".sha256(), "e49ae1d954a354cb29f44f365e1518dff18136af1f35c382eb000c038a972007")
+        Assert.assertEquals("admin@sollyu.com".sha256(), "615d8639456fe576e259f1152793b2dc700bf051f179546cd5ee3dcc218f7460")
     }
 
     @Test
