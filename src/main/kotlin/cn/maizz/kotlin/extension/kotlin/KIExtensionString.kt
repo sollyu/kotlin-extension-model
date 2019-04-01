@@ -17,11 +17,10 @@
 package cn.maizz.kotlin.extension.kotlin
 
 import java.nio.charset.Charset
-import java.security.MessageDigest
 import java.util.*
 import java.util.regex.Pattern
 
-interface KIExtensionString {
+interface KIExtensionString : KIExtensionByteArray {
 
     /**
      * 随机字符串
@@ -56,7 +55,24 @@ interface KIExtensionString {
      *
      * @param charset 字符串编码
      */
-    fun String.md5(charset: Charset = Charsets.UTF_8): String = MessageDigest.getInstance("MD5").digest(this.toByteArray(charset)).joinToString("") { String.format("%02x", it) }
+    fun String.md5(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).md5().toHexString()
+
+    /**
+     * 字符串进行MD5加密，16位
+     *
+     * @param charset 字符串编码
+     */
+    fun String.md5_16(charset: Charset = Charsets.UTF_8): String = md5(charset).substring(8, 24)
+
+    /**
+     *
+     */
+    fun String.sha1(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).sha1().toHexString()
+
+    /**
+     *
+     */
+    fun String.sha256(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).sha256().toHexString()
 
     /**
      * 字符串随机
