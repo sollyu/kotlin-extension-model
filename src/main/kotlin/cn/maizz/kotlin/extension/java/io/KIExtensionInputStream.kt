@@ -23,29 +23,28 @@ import java.nio.charset.Charset
 /**
  * 对java.io.InputStream类进行增强
  */
-interface KIExtensionInputStream {
 
-    /**
-     * 直接转换成string
-     *
-     * @param encoding 转码字符串编码
-     */
-    fun InputStream.toString(encoding: Charset) = IOUtils.toString(this, encoding)!!
+/**
+ * 直接转换成string
+ *
+ * @param encoding 转码字符串编码
+ */
+fun InputStream.toString(encoding: Charset) = IOUtils.toString(this, encoding)!!
 
-    /**
-     * 转换成ByteArray
-     */
-    fun InputStream.toByteArray(): ByteArray = IOUtils.toByteArray(this)
+/**
+ * 转换成ByteArray
+ */
+fun InputStream.toByteArray(): ByteArray = IOUtils.toByteArray(this)
 
-    /**
-     * 转换成char array
-     *
-     * @param encoding 转码字符串编码
-     */
-    fun InputStream.toCharArray(encoding: Charset = Charset.forName("UTF-8")): CharArray = IOUtils.toCharArray(this, encoding)
+/**
+ * 转换成char array
+ *
+ * @param encoding 转码字符串编码
+ */
+fun InputStream.toCharArray(encoding: Charset = Charset.forName("UTF-8")): CharArray =
+    IOUtils.toCharArray(this, encoding)
 
-    /**
-     * 对比
-     */
-    fun InputStream.equal(inputStream: InputStream): Boolean = IOUtils.contentEquals(this, inputStream)
-}
+/**
+ * 对比
+ */
+fun InputStream.equal(inputStream: InputStream): Boolean = IOUtils.contentEquals(this, inputStream)

@@ -16,8 +16,4 @@
 
 package cn.maizz.kotlin.extension.kotlin
 
-interface KIExtensionInt {
-
-    fun Int.toString(formatString: String): String = String.format(formatString, this)
-
-}
+fun Int.toString(formatString: String): String = String.format(formatString, this)

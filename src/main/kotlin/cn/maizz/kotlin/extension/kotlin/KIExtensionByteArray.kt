@@ -19,17 +19,15 @@ package cn.maizz.kotlin.extension.kotlin
 import java.security.MessageDigest
 import java.util.*
 
-interface KIExtensionByteArray {
 
-    fun ByteArray.toHexString(): String = this.joinToString("") { String.format("%02x", it) }
+fun ByteArray.toHexString(): String = this.joinToString("") { String.format("%02x", it) }
 
-    fun ByteArray.base64Encode(): ByteArray = Base64.getEncoder().encode(this)
+fun ByteArray.base64Encode(): ByteArray = Base64.getEncoder().encode(this)
 
-    fun ByteArray.base64Decode(): ByteArray = Base64.getDecoder().decode(this)
+fun ByteArray.base64Decode(): ByteArray = Base64.getDecoder().decode(this)
 
-    fun ByteArray.md5(): ByteArray = MessageDigest.getInstance("MD5").digest(this)
+fun ByteArray.md5(): ByteArray = MessageDigest.getInstance("MD5").digest(this)
 
-    fun ByteArray.sha1(): ByteArray = MessageDigest.getInstance("SHA-1").digest(this)
+fun ByteArray.sha1(): ByteArray = MessageDigest.getInstance("SHA-1").digest(this)
 
-    fun ByteArray.sha256(): ByteArray = MessageDigest.getInstance("SHA-256").digest(this)
-}
+fun ByteArray.sha256(): ByteArray = MessageDigest.getInstance("SHA-256").digest(this)

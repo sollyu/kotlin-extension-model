@@ -5,7 +5,7 @@ import org.junit.Test
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class KIExtensionDateTest : KIExtensionDate {
+class KIExtensionDateTest  {
 
     @Test
     fun testFormat() {

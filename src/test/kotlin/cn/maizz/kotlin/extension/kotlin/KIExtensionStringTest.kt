@@ -3,9 +3,8 @@ package cn.maizz.kotlin.extension.kotlin
 import org.junit.Assert
 import org.junit.Test
 import java.nio.charset.Charset
-import cn.maizz.kotlin.extension.kotlin.KIExtensionString
 
-class KIExtensionStringTest : KIExtensionString {
+class KIExtensionStringTest {
 
     @Test
     fun testMosaic() {

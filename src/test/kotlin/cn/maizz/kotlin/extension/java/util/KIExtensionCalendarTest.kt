@@ -4,7 +4,7 @@ import org.junit.Assert
 import org.junit.Test
 import java.util.*
 
-class KIExtensionCalendarTest : KIExtensionCalendar {
+class KIExtensionCalendarTest {
 
     @Test
     fun testFormTimestamp() {

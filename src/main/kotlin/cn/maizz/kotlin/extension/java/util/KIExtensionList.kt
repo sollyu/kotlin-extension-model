@@ -18,13 +18,10 @@ package cn.maizz.kotlin.extension.java.util
 
 import java.util.*
 
-interface KIExtensionList {
 
-    /**
-     * 随机取出一个值
-     *
-     * @param random 随机内容
-     */
-    fun <E> List<E>.random(random: Random = Random(System.currentTimeMillis())): E = get(random.nextInt(size))
-
-}
+/**
+ * 随机取出一个值
+ *
+ * @param random 随机内容
+ */
+fun <E> List<E>.random(random: Random = Random(System.currentTimeMillis())): E = get(random.nextInt(size))

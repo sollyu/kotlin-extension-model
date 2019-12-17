@@ -20,87 +20,93 @@ import java.nio.charset.Charset
 import java.util.*
 import java.util.regex.Pattern
 
-interface KIExtensionString : KIExtensionByteArray {
 
-    /**
-     * 随机字符串
-     */
-    fun String.Companion.random(length: Int): String = (1..length).map { "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"[Random().nextInt(62)] }.joinToString("")
+/**
+ * 随机字符串
+ */
+fun String.Companion.random(length: Int, src: String = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"): String =
+    (1..length).map { src[Random().nextInt(src.length)] }.joinToString(separator = "")
 
-    /**
-     * 字符串打马赛克 例如：18888888888 => 188****8888
-     *
-     * @param char          打码显示的字符
-     * @param startPosition 起始位置
-     * @param endPosition   结束未知
-     */
-    fun String.mosaic(char: Char = '*', startPosition: Int = 1, endPosition: Int = length): String = StringBuilder().also { stringBuilder -> (0 until length).forEach { i -> stringBuilder.append(if (i in startPosition..endPosition) char else this@mosaic[i]) } }.toString()
+/**
+ * 字符串打马赛克 例如：18888888888 => 188****8888
+ *
+ * @param char          打码显示的字符
+ * @param startPosition 起始位置
+ * @param endPosition   结束未知
+ */
+fun String.mosaic(char: Char = '*', startPosition: Int = 1, endPosition: Int = length): String =
+    StringBuilder().also { stringBuilder: java.lang.StringBuilder -> (0 until length).forEach { i: Int -> stringBuilder.append(if (i in startPosition..endPosition) char else this@mosaic[i]) } }.toString()
 
-    /**
-     * 字符串进行Base64加密
-     *
-     * @param charset 字符串toByteArray时的编码
-     */
-    fun String.base64Encode(charset: Charset = Charsets.UTF_8): String = Base64.getEncoder().encodeToString(this.toByteArray(charset))
+/**
+ * 字符串进行Base64加密
+ *
+ * @param charset 字符串toByteArray时的编码
+ */
+fun String.base64Encode(charset: Charset = Charsets.UTF_8): String =
+    Base64.getEncoder().encodeToString(this.toByteArray(charset))
 
-    /**
-     * 字符串进行Base64解码
-     *
-     * @param charset 创建字符串时的编码
-     */
-    fun String.base64Decode(charset: Charset = Charsets.UTF_8): String = String(Base64.getDecoder().decode(this), charset)
+/**
+ * 字符串进行Base64解码
+ *
+ * @param charset 创建字符串时的编码
+ */
+fun String.base64Decode(charset: Charset = Charsets.UTF_8): String = String(Base64.getDecoder().decode(this), charset)
 
-    /**
-     * 字符串进行MD5加密
-     *
-     * @param charset 字符串编码
-     */
-    fun String.md5(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).md5().toHexString()
+/**
+ * 字符串进行MD5加密
+ *
+ * @param charset 字符串编码
+ */
+fun String.md5(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).md5().toHexString()
 
-    /**
-     * 字符串进行MD5加密，16位
-     *
-     * @param charset 字符串编码
-     */
-    fun String.md5_16(charset: Charset = Charsets.UTF_8): String = md5(charset).substring(8, 24)
+/**
+ * 字符串进行MD5加密，16位
+ *
+ * @param charset 字符串编码
+ */
+fun String.md5_16(charset: Charset = Charsets.UTF_8): String = md5(charset).substring(8, 24)
 
-    /**
-     *
-     */
-    fun String.sha1(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).sha1().toHexString()
+/**
+ *
+ */
+fun String.sha1(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).sha1().toHexString()
 
-    /**
-     *
-     */
-    fun String.sha256(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).sha256().toHexString()
+/**
+ *
+ */
+fun String.sha256(charset: Charset = Charsets.UTF_8): String = toByteArray(charset).sha256().toHexString()
 
-    /**
-     * 字符串随机
-     */
-    fun String.random(length: Int = 10, random: Random = Random(System.currentTimeMillis())): String = (0 until length).map { this[random.nextInt(this.length)] }.joinToString("")
+/**
+ * 字符串随机
+ */
+fun String.random(length: Int = 10, random: Random = Random(System.currentTimeMillis())): String =
+    (0 until length).map { this[random.nextInt(this.length)] }.joinToString("")
 
-    /**
-     * 判断是否包含中文
-     */
-    fun String.isContainChinese(): Boolean = this.contains(Pattern.compile("[\u4e00-\u9fa5]").toRegex())
+/**
+ * 判断是否包含中文
+ */
+fun String.isContainChinese(): Boolean = this.contains(Pattern.compile("[\u4e00-\u9fa5]").toRegex())
 
-    /**
-     * 判断是否一个邮箱
-     */
-    fun String.isEmailValid(): Boolean = Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(this).matches()
+/**
+ * 判断是否一个邮箱
+ */
+fun String.isEmailValid(): Boolean =
+    Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(
+        this
+    ).matches()
 
-    /**
-     * 判断是否一个手机号码, 目前仅支持中国手机号码检测
-     */
-    fun String.isPhoneNumber(): Boolean = Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-8])|(14[5-9])|(166)|(19[8,9])|)\\d{8}$").matcher(this).matches()
+/**
+ * 判断是否一个手机号码, 目前仅支持中国手机号码检测
+ */
+fun String.isPhoneNumber(): Boolean =
+    Pattern.compile("^((13[0-9])|(15[^4])|(18[0-9])|(17[0-8])|(14[5-9])|(166)|(19[8,9])|)\\d{8}$").matcher(this).matches()
 
-    /**
-     * @param endIndex 结束位置
-     */
-    fun String.toUpperCase(endIndex: Int): String = this.substring(0, endIndex).toUpperCase() + this.substring(endIndex)
+/**
+ * @param endIndex 结束位置
+ */
+fun String.toUpperCase(endIndex: Int): String = this.substring(0, endIndex).toUpperCase() + this.substring(endIndex)
 
-    /**
-     * @param endIndex 结束位置
-     */
-    fun String.toLowerCase(endIndex: Int): String = this.substring(0, endIndex).toLowerCase() + this.substring(endIndex)
-}
+/**
+ * @param endIndex 结束位置
+ */
+fun String.toLowerCase(endIndex: Int): String = this.substring(0, endIndex).toLowerCase() + this.substring(endIndex)
