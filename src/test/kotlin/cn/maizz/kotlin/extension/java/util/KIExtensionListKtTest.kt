@@ -15,9 +15,19 @@
  *
  */
 
-package cn.maizz.kotlin.extension.kotlin
+package cn.maizz.kotlin.extension.java.util
 
-/**
- * 整数格式化
- */
-fun Int.format(format: String): String = String.format(format, this)
+import org.junit.Assert
+import org.junit.Test
+import java.util.*
+
+class KIExtensionListKtTest {
+
+    @Test
+    fun random() {
+        val origin: List<String> = arrayListOf("i", "love", "china")
+        val random: String = origin.random(Random())
+
+        Assert.assertTrue(origin.indexOf(random) != -1)
+    }
+}

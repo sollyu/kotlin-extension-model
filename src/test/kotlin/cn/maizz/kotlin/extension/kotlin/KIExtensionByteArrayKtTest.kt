@@ -17,7 +17,18 @@
 
 package cn.maizz.kotlin.extension.kotlin
 
-/**
- * 整数格式化
- */
-fun Int.format(format: String): String = String.format(format, this)
+import org.junit.Assert
+import org.junit.Test
+
+class KIExtensionByteArrayKtTest {
+
+    @Test
+    fun toStringHex() {
+        Assert.assertEquals(byteArrayOf(12, 32, 43).toStringHex(), "0c202b")
+    }
+
+    @Test
+    fun md5() {
+        Assert.assertEquals(byteArrayOf(12, 32, 43).md5(), "d0f034d30f1ad53d36f6d30d18a413fe")
+    }
+}
